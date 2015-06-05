@@ -40,7 +40,7 @@ end
 
 #### API
 
-It's all syntactic sugar, but not the right kind that makes you happy and stuff, but the untasteful one that comes with coffee in an airplane. Seriously, it's not even properly tested!
+It's all syntactic sugar, but not the right kind that makes you happy and stuff, but the distasteful one that comes with coffee in an airplane. Seriously, it's not even properly tested!
 
 ```ruby
 playlist = client.playlist(some_user_id, some_playlist_id)
