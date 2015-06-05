@@ -49,9 +49,10 @@ module Resource
     end
 
 
-    def fetch! client
+    def fetch! client=nil
+      client = SimpleSpotify.default_client
       response = client.get(@href)
-      self.class.new(response.body, true)
+      self.class.new(response.body, fetched: true)
     end
 
 

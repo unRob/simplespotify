@@ -3,8 +3,8 @@ module SimpleSpotify
     class Track
       include Resource
 
-      many :albums
-      many :artists
+      one :album
+      many :artists, paginated: true
 
       prop :markets, from: :available_markets
       prop :disc_number

@@ -16,6 +16,7 @@ module SimpleSpotify
         end
 
         prop = prop.to_sym
+        data = {items: data} unless data.is_a? Hash
         prop = :items unless data.has_key?(prop)
 
         data[prop].map! {|item| model.new(item) }
