@@ -35,7 +35,7 @@ module Resource
             when :real
               _set(k, (data[v] || v[:default]))
             when :virtual
-              data[key].each(&method(:_set))
+              data[key].each {|k, v| _set(k, v) }
             when :resource_collection
               values = data[key]
               values = SimpleSpotify::Model::Collection.of(klass, values) if v[:paginated]
