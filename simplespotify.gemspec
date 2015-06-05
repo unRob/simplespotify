@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'simplespotify/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "spotify"
+  spec.name          = "simplespotify"
   spec.version       = SimpleSpotify::VERSION
   spec.authors       = ["Roberto Hidalgo"]
   spec.email         = ["un@rob.mx"]
