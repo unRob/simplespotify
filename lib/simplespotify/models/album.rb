@@ -12,7 +12,7 @@ module SimpleSpotify
       merge :external_ids
 
       prop :genres, default: []
-      many :images
+      many :images, paginated: true
 
       prop :name
       prop :popularity
