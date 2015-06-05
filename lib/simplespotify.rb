@@ -12,7 +12,7 @@ module SimpleSpotify
 
   module Model
     [:Album, :Artist, :Image, :Track, :Collection, :Playlist, :Category, :User].each do |model|
-      autoload model, "simplespotify/models/#{model}"
+      autoload model, "simplespotify/models/#{model.to_s.downcase}"
     end
   end
 
