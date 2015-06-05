@@ -43,7 +43,7 @@ module SimpleSpotify
     end
 
 
-    def initialize access_token: nil, refresh_token:nil, client: {}
+    def initialize access_token: nil, refresh_token:nil, client: {}, token_type: nil, expires_in: nil
       @access_token = access_token
       @refresh_token = refresh_token
       @client = client.to_h

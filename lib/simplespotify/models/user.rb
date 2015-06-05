@@ -14,6 +14,10 @@ module SimpleSpotify
       many :images
       prop :product
 
+      def name
+        display_name
+      end
+
       def premium?
         @product == 'premium'
       end
