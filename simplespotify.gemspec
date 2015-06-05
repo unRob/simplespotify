@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "Yet another Spotify client"
   spec.description   = "Spotify API wrapper"
   spec.homepage      = "https://github.com/unRob/simplespotify"
-  spec.license       = ["WTFPL", 'GPLv2']
+  spec.licenses      = %w{WTFPL GPLv2}
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
