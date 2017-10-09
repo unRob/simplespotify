@@ -5,7 +5,7 @@ module SimpleSpotify
 
       attr_accessor :total
 
-      def self.of type, data
+      def self.of type, collection
         if type.is_a? Class
           model = type;
           prop = type.to_s.split('::').last.downcase+'s'
@@ -15,12 +15,11 @@ module SimpleSpotify
           prop = model_name+'s'
         end
 
-        prop = prop.to_sym
-        data = {items: data} unless data.is_a? Hash
-        prop = :items unless data.has_key?(prop)
+        collection = {items: collection} unless collection.is_a? Hash
+        prop = collection.has_key?(prop.to_sym) ? prop.to_sym : :items
 
-        data[prop].map! {|item| model.new(item) }
-        self.new(data)
+        collection[prop].map! {|item| model.new(item) }
+        self.new(collection)
       end
 
 

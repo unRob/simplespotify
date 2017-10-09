@@ -3,8 +3,8 @@ module SimpleSpotify
 
     attr_accessor :id, :secret, :session, :market
 
-    [:Albums, :Tracks, :Artists, :Users, :Browse, :Playlists].each do |action|
-      require "simplespotify/actions/#{action.downcase}"
+    [:Albums, :Tracks, :Artists, :Users, :Browse, :Player, :Playlists].each do |action|
+      require_relative "actions/#{action.downcase}.rb"
       include Actions.const_get(action)
     end
 
@@ -24,7 +24,6 @@ module SimpleSpotify
         SimpleSpotify.dispatch msg, session: session
       end
     end
-
 
     def search type, term, market: nil, limit: 20, offset: 0, filters: {}
       type = type.to_s.gsub(/s$/, '').to_sym

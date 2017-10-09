@@ -1,17 +1,17 @@
 require "simplespotify/version"
 require "simplespotify/constants"
+require 'simplespotify/client'
 require 'httparty'
 
 module SimpleSpotify
   autoload :Authorization, 'simplespotify/authorization'
-  autoload :Client, 'simplespotify/client'
   autoload :Request, 'simplespotify/request'
   autoload :Response, 'simplespotify/response'
   autoload :Error, 'simplespotify/errors'
   autoload :Resource, 'simplespotify/resource/resource'
 
   module Model
-    [:Album, :Artist, :Image, :Track, :Collection, :Playlist, :Category, :User].each do |model|
+    [:Album, :Artist, :Image, :Track, :Collection, :PlayEvent, :Playlist, :Category, :User].each do |model|
       autoload model, "simplespotify/models/#{model.to_s.downcase}"
     end
   end
