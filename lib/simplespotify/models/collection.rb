@@ -5,7 +5,7 @@ module SimpleSpotify
 
       attr_accessor :total
 
-      def self.of type, collection
+      def self.of type, collection, &refresh
         if type.is_a? Class
           model = type;
           prop = type.to_s.split('::').last.downcase+'s'
@@ -19,15 +19,16 @@ module SimpleSpotify
         prop = collection.has_key?(prop.to_sym) ? prop.to_sym : :items
 
         collection[prop].map! {|item| model.new(item) }
-        self.new(collection)
+        self.new(collection, prop, &refresh)
       end
 
 
-      def initialize data, property=:items
+      def initialize data, property=:items, &refresh
         values = data[property]
         super values
         @total = data[:total] || self.count
         @next = data[:next]
+        @refresh = refresh if block_given?
       end
 
 
@@ -43,8 +44,12 @@ module SimpleSpotify
 
       def more
         return [] unless more?
-        req = Request.new({endpoint: @next, private: false})
-        SimpleSpotify.dispatch(req)
+        if @refresh
+          @refresh.call @next
+        else
+          req = Request.new(@next, {private: true})
+          SimpleSpotify.dispatch(req)
+        end
       end
     end #/class
 
