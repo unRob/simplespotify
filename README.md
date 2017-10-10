@@ -1,6 +1,6 @@
 # SimpleSpotify
 [![Gem Version](https://badge.fury.io/rb/simplespotify.svg)](http://badge.fury.io/rb/simplespotify)
-[![Travis Build](https://travis-ci.org/unRob/simplespotify.svg)](https://travis-ci.org/unRob/simplespotify)
+[![Test status](https://circleci.com/gh/unRob/simplespotify.png)](https://circleci.com/gh/unRob/simplespotify)
 
 A lousy and very badly programmed Spotify API Client written in Ruby.
 
