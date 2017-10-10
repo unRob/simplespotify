@@ -8,9 +8,14 @@ module SimpleSpotify
         }
         query[:after] = after if after
         query[:before] = before if before
-        response = get "me/player/recently-played", query: query
+        response = get "me/player/recently-played?limit=#{limit}"
 
-        Model::Collection.of(SimpleSpotify::Model::PlayEvent, response.body)
+        refresh = -> url {
+          puts url
+          response = get url
+          return Model::Collection.of(SimpleSpotify::Model::PlayEvent, response.body, &refresh)
+        }
+        Model::Collection.of(SimpleSpotify::Model::PlayEvent, response.body, &refresh)
       end
 
     end
