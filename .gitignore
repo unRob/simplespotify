@@ -8,3 +8,4 @@
 /spec/reports/
 /tmp/
 local-test.rb
+cli-initializer.rb
