@@ -5,6 +5,7 @@ module SimpleSpotify
       case status_code
         when 401 then Unauthorized
         when 404 then NotFound
+        when 429 then RateLimited
         when (500..599) then API
         else
           DefaultError
@@ -50,6 +51,9 @@ module SimpleSpotify
     end
 
     class Unauthorized < DefaultError
+    end
+
+    class RateLimited < DefaultError
     end
 
   end
