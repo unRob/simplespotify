@@ -66,6 +66,15 @@ module SimpleSpotify
       end
     end
 
+    if http.code == 429 and SimpleSpotify::RETRY_IF_RATELIMITED == 'please'
+      raise SimpleSpotify::Error::RateLimited(429, http.body, request) if request.tries > SimpleSpotify::MAX_RETRIES
+      seconds = http.headers['Retry-After'].to_i + 1 # because computers (purely theoretic)
+      $stderr.puts "[simplespotify] Rate limited. Waiting #{seconds} seconds."
+      $stderr.puts "[simplespotify] waking up at #{Time.now + seconds}"
+      sleep seconds
+      return self.dispatch(request, session: session)
+    end
+
     return Response.new(http.code, http.body, request)
   end
 
